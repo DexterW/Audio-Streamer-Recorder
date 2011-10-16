@@ -39,8 +39,8 @@
 
 @interface DWAudioRecorder : NSObject <DWAudioReaderDelegate, DWAudioStreamerDelegate> {
 @private
-    DWAudioReader *_voiceStreamer;
-    DWAudioStreamer *_voiceSender;
+    DWAudioReader *_voiceReader;
+    DWAudioStreamer *_voiceStreamer;
     BOOL _isPreparedForRecording;
 }
 
@@ -62,12 +62,17 @@
 
 /*
  The remote destination port should be specified along with the remote destination url.
+
+ In the future, this property will be merged with remoteDestinationURL, as NSURL has ports built in.
+ 
+ This is a leaky abstraction - CFStreamCreatePairWithSocketToCFHost() requires a port number as an argument
+ so it is semantically separated here.
  */
 @property (nonatomic) NSUInteger remoteDestinationPort;
 
 /*
  The header data is an optional chunk of data that can be sent to the remote destination before audio data is streamed.
- This is often used to tell the destination what type of data it is getting, or how to associate the streamed data.
+ This is often used to tell the destination what type of data it is getting, or how to associate the streamed data with other data in an application.
  */
 @property (nonatomic, retain) NSData *headerData;
 
@@ -77,6 +82,7 @@
  When this method is called, local destination, remote destination, and the port are LOCKED.
  
  If you don't call this method explicitly, it is called when -record is called.
+ For optimum performance, call this method as soon as possible.
  */
 -(void)prepareForRecording;
 

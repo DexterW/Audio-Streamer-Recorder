@@ -19,19 +19,19 @@
 - (id)init {
     self = [super init];
     if (self) {
-        _voiceStreamer = [[DWAudioReader alloc] init];
-        [_voiceStreamer setDelegate:self];
-        _voiceSender = [[DWAudioStreamer alloc] init];
+        _voiceReader = [[DWAudioReader alloc] init];
+        [_voiceReader setDelegate:self];
+        _voiceStreamer = [[DWAudioStreamer alloc] init];
     }
     return self;
 }
 
 - (void)dealloc {
+    if (_voiceReader) {
+        [_voiceReader release];
+    }
     if (_voiceStreamer) {
         [_voiceStreamer release];
-    }
-    if (_voiceSender) {
-        [_voiceSender release];
     }
     [self setDelegate:nil];
     [self setLocalDestinationURL:nil];
@@ -60,7 +60,7 @@
         [remoteDestinationURL release];
     }
     
-    [_voiceSender setUrl:url];
+    [_voiceStreamer setUrl:url];
     
     remoteDestinationURL = [url retain];
 }
@@ -70,7 +70,7 @@
         [[NSException exceptionWithName:NSGenericException reason:@"Cannot change the remote destination port while recording audio" userInfo:nil] raise];
     }
     remoteDestinationPort = port;
-    [_voiceSender setPortNumber:port];
+    [_voiceStreamer setPortNumber:port];
 }
 
 -(void)prepareForRecording {
@@ -79,12 +79,12 @@
     }
     if ([self remoteDestinationURL]) {
         if ([self headerData]) {
-            [_voiceSender setHeaderData:[self headerData]];
+            [_voiceStreamer setHeaderData:[self headerData]];
         }
-        [_voiceSender prepareForSending];
+        [_voiceStreamer prepareForSending];
     }
     if ([self localDestinationURL]) {
-        [_voiceStreamer setFileURL:[self localDestinationURL]];
+        [_voiceReader setFileURL:[self localDestinationURL]];
     }
     _isPreparedForRecording = YES;
 }
@@ -96,23 +96,23 @@
     if (!_isPreparedForRecording) {
         [self prepareForRecording];
     }
-    [_voiceStreamer record];
+    [_voiceReader record];
 }
 
 -(void)stop {
     if (![self isRecording]) {
         return;
     }
-    [_voiceStreamer stop];
-    [_voiceSender closeConnection];
+    [_voiceReader stop];
+    [_voiceStreamer closeConnection];
 }
 
 -(AudioQueueLevelMeterState)audioLevel {
-    return [_voiceStreamer audioLevel];
+    return [_voiceReader audioLevel];
 }
 
 -(BOOL)isRecording {
-    return [_voiceStreamer isRecording];
+    return [_voiceReader isRecording];
 }
 
 #pragma mark -
@@ -120,7 +120,7 @@
 
 -(void)audioReaderDidCatpureAudioBuffer:(AudioQueueBufferRef)audioBuffer {
     if ([self remoteDestinationURL]) {
-        [_voiceSender sendAudioDataFromBuffer:audioBuffer];
+        [_voiceStreamer sendAudioDataFromBuffer:audioBuffer];
     }
 }
 
