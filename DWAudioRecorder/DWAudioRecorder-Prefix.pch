@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'DWAudioRecorder' target in the 'DWAudioRecorder' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

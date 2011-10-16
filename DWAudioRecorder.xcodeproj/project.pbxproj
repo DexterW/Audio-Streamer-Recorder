@@ -1,0 +1,401 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D095E57A144A9B63002C83AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D095E579144A9B63002C83AB /* Foundation.framework */; };
+		D095E580144A9B63002C83AB /* DWAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = D095E57F144A9B63002C83AB /* DWAudioRecorder.m */; };
+		D095E588144A9B63002C83AB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D095E587144A9B63002C83AB /* SenTestingKit.framework */; };
+		D095E58A144A9B63002C83AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D095E589144A9B63002C83AB /* UIKit.framework */; };
+		D095E58B144A9B63002C83AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D095E579144A9B63002C83AB /* Foundation.framework */; };
+		D095E58E144A9B63002C83AB /* libDWAudioRecorder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D095E576144A9B63002C83AB /* libDWAudioRecorder.a */; };
+		D095E594144A9B63002C83AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D095E592144A9B63002C83AB /* InfoPlist.strings */; };
+		D095E597144A9B63002C83AB /* DWAudioRecorderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D095E596144A9B63002C83AB /* DWAudioRecorderTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D095E58C144A9B63002C83AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D095E56D144A9B63002C83AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D095E575144A9B63002C83AB;
+			remoteInfo = DWAudioRecorder;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D095E576144A9B63002C83AB /* libDWAudioRecorder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDWAudioRecorder.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D095E579144A9B63002C83AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D095E57D144A9B63002C83AB /* DWAudioRecorder-Prefix.pch */ = {isa = PBXFileReference; path = "DWAudioRecorder-Prefix.pch"; sourceTree = "<group>"; };
+		D095E57E144A9B63002C83AB /* DWAudioRecorder.h */ = {isa = PBXFileReference; path = DWAudioRecorder.h; sourceTree = "<group>"; };
+		D095E57F144A9B63002C83AB /* DWAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWAudioRecorder.m; sourceTree = "<group>"; };
+		D095E586144A9B63002C83AB /* DWAudioRecorderTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DWAudioRecorderTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D095E587144A9B63002C83AB /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		D095E589144A9B63002C83AB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		D095E591144A9B63002C83AB /* DWAudioRecorderTests-Info.plist */ = {isa = PBXFileReference; path = "DWAudioRecorderTests-Info.plist"; sourceTree = "<group>"; };
+		D095E593144A9B63002C83AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D095E595144A9B63002C83AB /* DWAudioRecorderTests.h */ = {isa = PBXFileReference; path = DWAudioRecorderTests.h; sourceTree = "<group>"; };
+		D095E596144A9B63002C83AB /* DWAudioRecorderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWAudioRecorderTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D095E573144A9B63002C83AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D095E57A144A9B63002C83AB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D095E582144A9B63002C83AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D095E588144A9B63002C83AB /* SenTestingKit.framework in Frameworks */,
+				D095E58A144A9B63002C83AB /* UIKit.framework in Frameworks */,
+				D095E58B144A9B63002C83AB /* Foundation.framework in Frameworks */,
+				D095E58E144A9B63002C83AB /* libDWAudioRecorder.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D095E56B144A9B63002C83AB = {
+			isa = PBXGroup;
+			children = (
+				D095E57B144A9B63002C83AB /* DWAudioRecorder */,
+				D095E58F144A9B63002C83AB /* DWAudioRecorderTests */,
+				D095E578144A9B63002C83AB /* Frameworks */,
+				D095E577144A9B63002C83AB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D095E577144A9B63002C83AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D095E576144A9B63002C83AB /* libDWAudioRecorder.a */,
+				D095E586144A9B63002C83AB /* DWAudioRecorderTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D095E578144A9B63002C83AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D095E579144A9B63002C83AB /* Foundation.framework */,
+				D095E587144A9B63002C83AB /* SenTestingKit.framework */,
+				D095E589144A9B63002C83AB /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D095E57B144A9B63002C83AB /* DWAudioRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				D095E57E144A9B63002C83AB /* DWAudioRecorder.h */,
+				D095E57F144A9B63002C83AB /* DWAudioRecorder.m */,
+				D095E57C144A9B63002C83AB /* Supporting Files */,
+			);
+			path = DWAudioRecorder;
+			sourceTree = "<group>";
+		};
+		D095E57C144A9B63002C83AB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D095E57D144A9B63002C83AB /* DWAudioRecorder-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D095E58F144A9B63002C83AB /* DWAudioRecorderTests */ = {
+			isa = PBXGroup;
+			children = (
+				D095E595144A9B63002C83AB /* DWAudioRecorderTests.h */,
+				D095E596144A9B63002C83AB /* DWAudioRecorderTests.m */,
+				D095E590144A9B63002C83AB /* Supporting Files */,
+			);
+			path = DWAudioRecorderTests;
+			sourceTree = "<group>";
+		};
+		D095E590144A9B63002C83AB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D095E591144A9B63002C83AB /* DWAudioRecorderTests-Info.plist */,
+				D095E592144A9B63002C83AB /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D095E574144A9B63002C83AB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D095E575144A9B63002C83AB /* DWAudioRecorder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D095E59A144A9B63002C83AB /* Build configuration list for PBXNativeTarget "DWAudioRecorder" */;
+			buildPhases = (
+				D095E572144A9B63002C83AB /* Sources */,
+				D095E573144A9B63002C83AB /* Frameworks */,
+				D095E574144A9B63002C83AB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DWAudioRecorder;
+			productName = DWAudioRecorder;
+			productReference = D095E576144A9B63002C83AB /* libDWAudioRecorder.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D095E585144A9B63002C83AB /* DWAudioRecorderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D095E59D144A9B63002C83AB /* Build configuration list for PBXNativeTarget "DWAudioRecorderTests" */;
+			buildPhases = (
+				D095E581144A9B63002C83AB /* Sources */,
+				D095E582144A9B63002C83AB /* Frameworks */,
+				D095E583144A9B63002C83AB /* Resources */,
+				D095E584144A9B63002C83AB /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D095E58D144A9B63002C83AB /* PBXTargetDependency */,
+			);
+			name = DWAudioRecorderTests;
+			productName = DWAudioRecorderTests;
+			productReference = D095E586144A9B63002C83AB /* DWAudioRecorderTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D095E56D144A9B63002C83AB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Peppered Software";
+			};
+			buildConfigurationList = D095E570144A9B63002C83AB /* Build configuration list for PBXProject "DWAudioRecorder" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D095E56B144A9B63002C83AB;
+			productRefGroup = D095E577144A9B63002C83AB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D095E575144A9B63002C83AB /* DWAudioRecorder */,
+				D095E585144A9B63002C83AB /* DWAudioRecorderTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D095E583144A9B63002C83AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D095E594144A9B63002C83AB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D095E584144A9B63002C83AB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D095E572144A9B63002C83AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D095E580144A9B63002C83AB /* DWAudioRecorder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D095E581144A9B63002C83AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D095E597144A9B63002C83AB /* DWAudioRecorderTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D095E58D144A9B63002C83AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D095E575144A9B63002C83AB /* DWAudioRecorder */;
+			targetProxy = D095E58C144A9B63002C83AB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D095E592144A9B63002C83AB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D095E593144A9B63002C83AB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D095E598144A9B63002C83AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D095E599144A9B63002C83AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D095E59B144A9B63002C83AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/DWAudioRecorder.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DWAudioRecorder/DWAudioRecorder-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D095E59C144A9B63002C83AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/DWAudioRecorder.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DWAudioRecorder/DWAudioRecorder-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		D095E59E144A9B63002C83AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DWAudioRecorder/DWAudioRecorder-Prefix.pch";
+				INFOPLIST_FILE = "DWAudioRecorderTests/DWAudioRecorderTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		D095E59F144A9B63002C83AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DWAudioRecorder/DWAudioRecorder-Prefix.pch";
+				INFOPLIST_FILE = "DWAudioRecorderTests/DWAudioRecorderTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D095E570144A9B63002C83AB /* Build configuration list for PBXProject "DWAudioRecorder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D095E598144A9B63002C83AB /* Debug */,
+				D095E599144A9B63002C83AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D095E59A144A9B63002C83AB /* Build configuration list for PBXNativeTarget "DWAudioRecorder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D095E59B144A9B63002C83AB /* Debug */,
+				D095E59C144A9B63002C83AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D095E59D144A9B63002C83AB /* Build configuration list for PBXNativeTarget "DWAudioRecorderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D095E59E144A9B63002C83AB /* Debug */,
+				D095E59F144A9B63002C83AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D095E56D144A9B63002C83AB /* Project object */;
+}
