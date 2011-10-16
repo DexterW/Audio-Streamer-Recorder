@@ -1,23 +1,139 @@
 //
-//  DWAudioRecorder.m
-//  DWAudioRecorder
+//  DWVoiceRecorder.m
+//  DWpictionAudioRecorder
 //
-//  Created by Dexter Weiss on 10/15/11.
-//  Copyright (c) 2011 Peppered Software. All rights reserved.
+//  Created by Dexter Weiss on 7/12/11.
+//  Copyright 2011 Dexter Weiss. All rights reserved.
 //
 
 #import "DWAudioRecorder.h"
 
 @implementation DWAudioRecorder
 
-- (id)init
-{
+@synthesize delegate;
+@synthesize localDestinationURL;
+@synthesize remoteDestinationURL;
+@synthesize remoteDestinationPort;
+@synthesize headerData;
+
+- (id)init {
     self = [super init];
     if (self) {
-        // Initialization code here.
+        _voiceStreamer = [[DWAudioReader alloc] init];
+        [_voiceStreamer setDelegate:self];
+        _voiceSender = [[DWAudioStreamer alloc] init];
+    }
+    return self;
+}
+
+- (void)dealloc {
+    if (_voiceStreamer) {
+        [_voiceStreamer release];
+    }
+    if (_voiceSender) {
+        [_voiceSender release];
+    }
+    [self setDelegate:nil];
+    [self setLocalDestinationURL:nil];
+    [self setRemoteDestinationURL:nil];
+    [self setHeaderData:nil];
+    [super dealloc];
+}
+
+-(void)setLocalDestinationURL:(NSURL *)url {
+    if ([self isRecording]) {
+        [[NSException exceptionWithName:NSGenericException reason:@"Cannot change the local destination URL while recording audio" userInfo:nil] raise];
     }
     
-    return self;
+    if (localDestinationURL) {
+        [localDestinationURL release];
+    }
+    
+    localDestinationURL = [url retain];
+}
+
+-(void)setRemoteDestinationURL:(NSURL *)url {
+    if ([self isRecording]) {
+        [[NSException exceptionWithName:NSGenericException reason:@"Cannot change the remote destination URL while recording audio" userInfo:nil] raise];
+    }
+    if (remoteDestinationURL) {
+        [remoteDestinationURL release];
+    }
+    
+    [_voiceSender setUrl:url];
+    
+    remoteDestinationURL = [url retain];
+}
+
+-(void)setRemoteDestinationPort:(NSUInteger)port {
+    if ([self isRecording]) {
+        [[NSException exceptionWithName:NSGenericException reason:@"Cannot change the remote destination port while recording audio" userInfo:nil] raise];
+    }
+    remoteDestinationPort = port;
+    [_voiceSender setPortNumber:port];
+}
+
+-(void)prepareForRecording {
+    if ([self isRecording]) {
+        [[NSException exceptionWithName:NSGenericException reason:@"Cannot prepare for recording while the audio recorder is already recording" userInfo:nil] raise];
+    }
+    if ([self remoteDestinationURL]) {
+        if ([self headerData]) {
+            [_voiceSender setHeaderData:[self headerData]];
+        }
+        [_voiceSender prepareForSending];
+    }
+    if ([self localDestinationURL]) {
+        [_voiceStreamer setFileURL:[self localDestinationURL]];
+    }
+    _isPreparedForRecording = YES;
+}
+
+-(void)record {
+    if ([self isRecording]) {
+        return;
+    }
+    if (!_isPreparedForRecording) {
+        [self prepareForRecording];
+    }
+    [_voiceStreamer record];
+}
+
+-(void)stop {
+    if (![self isRecording]) {
+        return;
+    }
+    [_voiceStreamer stop];
+    [_voiceSender closeConnection];
+}
+
+-(AudioQueueLevelMeterState)audioLevel {
+    return [_voiceStreamer audioLevel];
+}
+
+-(BOOL)isRecording {
+    return [_voiceStreamer isRecording];
+}
+
+#pragma mark -
+#pragma mark Reader Delegate
+
+-(void)audioReaderDidCatpureAudioBuffer:(AudioQueueBufferRef)audioBuffer {
+    if ([self remoteDestinationURL]) {
+        [_voiceSender sendAudioDataFromBuffer:audioBuffer];
+    }
+}
+
+-(void)audioReader:(DWAudioReader *)reader didFailWithError:(NSError *)error {
+    [[self delegate] audioRecorder:self didEncounterError:error];
+}
+
+
+#pragma mark -
+#pragma mark Sender Delegate
+
+-(void)audioStreamer:(DWAudioStreamer *)sender didFailWithError:(NSError *)error {
+    [[self delegate] audioRecorder:self didEncounterError:error];
 }
 
 @end
