@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34C5AB7014678DC10020BC81 /* DWAudioReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C5AB6A14678DC10020BC81 /* DWAudioReader.h */; };
+		34C5AB7114678DC10020BC81 /* DWAudioReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5AB6B14678DC10020BC81 /* DWAudioReader.m */; };
+		34C5AB7214678DC10020BC81 /* DWAudioRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C5AB6C14678DC10020BC81 /* DWAudioRecorder.h */; };
+		34C5AB7314678DC10020BC81 /* DWAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5AB6D14678DC10020BC81 /* DWAudioRecorder.m */; };
+		34C5AB7414678DC10020BC81 /* DWAudioStreamer.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C5AB6E14678DC10020BC81 /* DWAudioStreamer.h */; };
+		34C5AB7514678DC10020BC81 /* DWAudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5AB6F14678DC10020BC81 /* DWAudioStreamer.m */; };
 		D095E57A144A9B63002C83AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D095E579144A9B63002C83AB /* Foundation.framework */; };
 		D095E588144A9B63002C83AB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D095E587144A9B63002C83AB /* SenTestingKit.framework */; };
 		D095E58A144A9B63002C83AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D095E589144A9B63002C83AB /* UIKit.framework */; };
@@ -14,12 +20,6 @@
 		D095E58E144A9B63002C83AB /* libDWAudioRecorder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D095E576144A9B63002C83AB /* libDWAudioRecorder.a */; };
 		D095E594144A9B63002C83AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D095E592144A9B63002C83AB /* InfoPlist.strings */; };
 		D095E597144A9B63002C83AB /* DWAudioRecorderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D095E596144A9B63002C83AB /* DWAudioRecorderTests.m */; };
-		D095E5A2144A9B7C002C83AB /* DWAudioRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = D095E5A0144A9B7C002C83AB /* DWAudioRecorder.h */; };
-		D095E5A3144A9B7C002C83AB /* DWAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = D095E5A1144A9B7C002C83AB /* DWAudioRecorder.m */; };
-		D095E5A8144A9B86002C83AB /* DWAudioReader.h in Headers */ = {isa = PBXBuildFile; fileRef = D095E5A4144A9B86002C83AB /* DWAudioReader.h */; };
-		D095E5A9144A9B86002C83AB /* DWAudioReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D095E5A5144A9B86002C83AB /* DWAudioReader.m */; };
-		D095E5AA144A9B86002C83AB /* DWAudioStreamer.h in Headers */ = {isa = PBXBuildFile; fileRef = D095E5A6144A9B86002C83AB /* DWAudioStreamer.h */; };
-		D095E5AB144A9B86002C83AB /* DWAudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = D095E5A7144A9B86002C83AB /* DWAudioStreamer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +33,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		34C5AB6A14678DC10020BC81 /* DWAudioReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAudioReader.h; sourceTree = "<group>"; };
+		34C5AB6B14678DC10020BC81 /* DWAudioReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAudioReader.m; sourceTree = "<group>"; };
+		34C5AB6C14678DC10020BC81 /* DWAudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAudioRecorder.h; sourceTree = "<group>"; };
+		34C5AB6D14678DC10020BC81 /* DWAudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAudioRecorder.m; sourceTree = "<group>"; };
+		34C5AB6E14678DC10020BC81 /* DWAudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAudioStreamer.h; sourceTree = "<group>"; };
+		34C5AB6F14678DC10020BC81 /* DWAudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAudioStreamer.m; sourceTree = "<group>"; };
 		D095E576144A9B63002C83AB /* libDWAudioRecorder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDWAudioRecorder.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D095E579144A9B63002C83AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D095E57D144A9B63002C83AB /* DWAudioRecorder-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DWAudioRecorder-Prefix.pch"; sourceTree = "<group>"; };
@@ -43,12 +49,6 @@
 		D095E593144A9B63002C83AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D095E595144A9B63002C83AB /* DWAudioRecorderTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWAudioRecorderTests.h; sourceTree = "<group>"; };
 		D095E596144A9B63002C83AB /* DWAudioRecorderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWAudioRecorderTests.m; sourceTree = "<group>"; };
-		D095E5A0144A9B7C002C83AB /* DWAudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAudioRecorder.h; sourceTree = "<group>"; };
-		D095E5A1144A9B7C002C83AB /* DWAudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAudioRecorder.m; sourceTree = "<group>"; };
-		D095E5A4144A9B86002C83AB /* DWAudioReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAudioReader.h; sourceTree = "<group>"; };
-		D095E5A5144A9B86002C83AB /* DWAudioReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAudioReader.m; sourceTree = "<group>"; };
-		D095E5A6144A9B86002C83AB /* DWAudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAudioStreamer.h; sourceTree = "<group>"; };
-		D095E5A7144A9B86002C83AB /* DWAudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAudioStreamer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,12 +106,12 @@
 		D095E57B144A9B63002C83AB /* DWAudioRecorder */ = {
 			isa = PBXGroup;
 			children = (
-				D095E5A0144A9B7C002C83AB /* DWAudioRecorder.h */,
-				D095E5A1144A9B7C002C83AB /* DWAudioRecorder.m */,
-				D095E5A4144A9B86002C83AB /* DWAudioReader.h */,
-				D095E5A5144A9B86002C83AB /* DWAudioReader.m */,
-				D095E5A6144A9B86002C83AB /* DWAudioStreamer.h */,
-				D095E5A7144A9B86002C83AB /* DWAudioStreamer.m */,
+				34C5AB6A14678DC10020BC81 /* DWAudioReader.h */,
+				34C5AB6B14678DC10020BC81 /* DWAudioReader.m */,
+				34C5AB6C14678DC10020BC81 /* DWAudioRecorder.h */,
+				34C5AB6D14678DC10020BC81 /* DWAudioRecorder.m */,
+				34C5AB6E14678DC10020BC81 /* DWAudioStreamer.h */,
+				34C5AB6F14678DC10020BC81 /* DWAudioStreamer.m */,
 				D095E57C144A9B63002C83AB /* Supporting Files */,
 			);
 			path = DWAudioRecorder;
@@ -151,9 +151,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D095E5A2144A9B7C002C83AB /* DWAudioRecorder.h in Headers */,
-				D095E5A8144A9B86002C83AB /* DWAudioReader.h in Headers */,
-				D095E5AA144A9B86002C83AB /* DWAudioStreamer.h in Headers */,
+				34C5AB7014678DC10020BC81 /* DWAudioReader.h in Headers */,
+				34C5AB7214678DC10020BC81 /* DWAudioRecorder.h in Headers */,
+				34C5AB7414678DC10020BC81 /* DWAudioStreamer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,9 +255,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D095E5A3144A9B7C002C83AB /* DWAudioRecorder.m in Sources */,
-				D095E5A9144A9B86002C83AB /* DWAudioReader.m in Sources */,
-				D095E5AB144A9B86002C83AB /* DWAudioStreamer.m in Sources */,
+				34C5AB7114678DC10020BC81 /* DWAudioReader.m in Sources */,
+				34C5AB7314678DC10020BC81 /* DWAudioRecorder.m in Sources */,
+				34C5AB7514678DC10020BC81 /* DWAudioStreamer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +404,7 @@
 				D095E59C144A9B63002C83AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D095E59D144A9B63002C83AB /* Build configuration list for PBXNativeTarget "DWAudioRecorderTests" */ = {
 			isa = XCConfigurationList;
@@ -412,6 +413,7 @@
 				D095E59F144A9B63002C83AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

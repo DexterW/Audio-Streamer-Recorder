@@ -114,6 +114,7 @@ static void streamEventCallback(CFWriteStreamRef stream, CFStreamEventType type,
 -(void)prepareForSending {
     CFHostRef hostRef = CFHostCreateWithName(kCFAllocatorSystemDefault, (CFStringRef)[[self url] path]);
     CFStreamCreatePairWithSocketToCFHost(kCFAllocatorSystemDefault, hostRef, [self portNumber], NULL, &_outputStream);
+    CFRelease(hostRef);
     CFStreamStatus status = CFWriteStreamGetStatus(_outputStream);
     if (status == kCFStreamStatusError) {
         if ([delegate respondsToSelector:@selector(audioStreamer:didFailWithError:)]) {

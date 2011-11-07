@@ -42,7 +42,6 @@ typedef enum {
 @interface DWAudioStreamer : NSObject {
     @private
     CFWriteStreamRef _outputStream;
-    CFHostRef _host;
 }
 
 @property (nonatomic, retain) NSURL *url;
