@@ -10,12 +10,6 @@
 
 @implementation DWAudioRecorder
 
-@synthesize delegate;
-@synthesize localDestinationURL;
-@synthesize remoteDestinationURL;
-@synthesize remoteDestinationPort;
-@synthesize headerData;
-
 - (id)init {
     self = [super init];
     if (self) {
@@ -27,50 +21,39 @@
 }
 
 - (void)dealloc {
-    if (_voiceReader) {
-        [_voiceReader release];
-    }
-    if (_voiceStreamer) {
-        [_voiceStreamer release];
-    }
     [self setDelegate:nil];
     [self setLocalDestinationURL:nil];
     [self setRemoteDestinationURL:nil];
     [self setHeaderData:nil];
-    [super dealloc];
 }
 
 -(void)setLocalDestinationURL:(NSURL *)url {
     if ([self isRecording]) {
         [[NSException exceptionWithName:NSGenericException reason:@"Cannot change the local destination URL while recording audio" userInfo:nil] raise];
     }
-    
-    if (localDestinationURL) {
-        [localDestinationURL release];
-    }
-    
-    localDestinationURL = [url retain];
+    [self willChangeValueForKey:@"localDestinationURL"];
+    _localDestinationURL = url;
+    [self didChangeValueForKey:@"localDestinationURL"];
 }
 
 -(void)setRemoteDestinationURL:(NSURL *)url {
     if ([self isRecording]) {
         [[NSException exceptionWithName:NSGenericException reason:@"Cannot change the remote destination URL while recording audio" userInfo:nil] raise];
     }
-    if (remoteDestinationURL) {
-        [remoteDestinationURL release];
-    }
-    
+    [self willChangeValueForKey:@"remoteDestinationURL"];
     [_voiceStreamer setUrl:url];
-    
-    remoteDestinationURL = [url retain];
+    _remoteDestinationURL = url;
+    [self didChangeValueForKey:@"remoteDestinationURL"];
 }
 
 -(void)setRemoteDestinationPort:(NSUInteger)port {
     if ([self isRecording]) {
         [[NSException exceptionWithName:NSGenericException reason:@"Cannot change the remote destination port while recording audio" userInfo:nil] raise];
     }
-    remoteDestinationPort = port;
+    [self willChangeValueForKey:@"remoteDestinationPort"];
+    _remoteDestinationPort = port;
     [_voiceStreamer setPortNumber:port];
+    [self didChangeValueForKey:@"remoteDestinationPort"];
 }
 
 -(void)prepareForRecording {

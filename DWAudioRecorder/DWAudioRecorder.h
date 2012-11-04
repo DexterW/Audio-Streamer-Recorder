@@ -27,6 +27,9 @@
  
  To stream audio down from the remote host using an http live streaming enabled player, use AVPlayer from
  the AVFoundation framework.  NOTE: AVAudioPlayer will not work with remote hosts.  It *must* be AVPlayer.
+ 
+ v1.1:
+ ARC
  */
 
 @class DWAudioRecorder;
@@ -48,17 +51,17 @@
  The audio recorder delegate captures all errors originating from this tool.
  It is highly recommended that the delegate is set.
  */
-@property (assign) id<DWAudioRecorderDelegate>delegate;
+@property (nonatomic, unsafe_unretained) id<DWAudioRecorderDelegate>delegate;
 
 /*
  The local destination url should be set if you want the recorder to keep all recorded audio on disk.
  */
-@property (nonatomic, retain) NSURL *localDestinationURL;
+@property (nonatomic, strong) NSURL *localDestinationURL;
 
 /*
  The remote destination url should be set if you want to stream the audio via a socket to a remote destination.
  */
-@property (nonatomic, retain) NSURL *remoteDestinationURL;
+@property (nonatomic, strong) NSURL *remoteDestinationURL;
 
 /*
  The remote destination port should be specified along with the remote destination url.
@@ -74,7 +77,7 @@
  The header data is an optional chunk of data that can be sent to the remote destination before audio data is streamed.
  This is often used to tell the destination what type of data it is getting, or how to associate the streamed data with other data in an application.
  */
-@property (nonatomic, retain) NSData *headerData;
+@property (nonatomic, strong) NSData *headerData;
 
 
 /*

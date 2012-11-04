@@ -87,7 +87,7 @@ static void HandleInputBuffer (void *aqData, AudioQueueRef inAQ, AudioQueueBuffe
         pAqData->mCurrentPacket += inNumPackets;
     }
     
-    id <DWAudioReaderDelegate> delegate = pAqData->mDelegateRef;
+    id <DWAudioReaderDelegate> delegate = (__bridge id<DWAudioReaderDelegate>)(pAqData->mDelegateRef);
     
     if (pAqData->mIsRunning) {
         [delegate audioReaderDidCatpureAudioBuffer:inBuffer];
@@ -157,12 +157,12 @@ static void HandleInputBuffer (void *aqData, AudioQueueRef inAQ, AudioQueueBuffe
 
 -(void)setDelegate:(id<DWAudioReaderDelegate>)delegateRef {
     delegate = delegateRef;
-    recorderState.mDelegateRef = delegate;
+    recorderState.mDelegateRef = (__bridge void *)(delegate);
 }
 
 -(void)setFileURL:(NSURL *)url {
     AudioFileTypeID fileType = kAudioFileCAFType;
-    OSStatus status = AudioFileCreateWithURL((CFURLRef)url, fileType, &recorderState.mDataFormat, kAudioFileFlags_EraseFile, &recorderState.mAudioFile);
+    OSStatus status = AudioFileCreateWithURL((__bridge CFURLRef)url, fileType, &recorderState.mDataFormat, kAudioFileFlags_EraseFile, &recorderState.mAudioFile);
     if (status != noErr) {
         if ([[self delegate] respondsToSelector:@selector(audioReaderDidFailWithError:)]) {
             [[self delegate] audioReader:self didFailWithError:errorForAudioErrorCode(DWAudioReaderErrorFailedToCreateAudioFile)];

@@ -55,7 +55,7 @@ static NSError * errorForAudioErrorCode(DWAudioStreamerError errorCode) {
 }
 
 static void streamEventCallback(CFWriteStreamRef stream, CFStreamEventType type, void *clientCallBackInfo) {
-    DWAudioStreamer *sender = (DWAudioStreamer *)clientCallBackInfo;
+    DWAudioStreamer *sender = (__bridge DWAudioStreamer *)clientCallBackInfo;
     if (type == kCFStreamEventCanAcceptBytes) {
         if ([sender headerData]) {
             CFIndex bytesWritten = CFWriteStreamWrite(stream, [[sender headerData] bytes], [[sender headerData] length]);
@@ -90,7 +90,6 @@ static void streamEventCallback(CFWriteStreamRef stream, CFStreamEventType type,
 -(void)dealloc {
     [self setHeaderData:nil];
     CFRelease(_outputStream);
-    [super dealloc];
 }
 
 
@@ -112,13 +111,13 @@ static void streamEventCallback(CFWriteStreamRef stream, CFStreamEventType type,
 }
 
 -(void)prepareForSending {
-    CFHostRef hostRef = CFHostCreateWithName(kCFAllocatorSystemDefault, (CFStringRef)[[self url] path]);
+    CFHostRef hostRef = CFHostCreateWithName(kCFAllocatorSystemDefault, (__bridge CFStringRef)[[self url] path]);
     CFStreamCreatePairWithSocketToCFHost(kCFAllocatorSystemDefault, hostRef, [self portNumber], NULL, &_outputStream);
     CFRelease(hostRef);
     CFStreamStatus status = CFWriteStreamGetStatus(_outputStream);
     if (status == kCFStreamStatusError) {
         if ([delegate respondsToSelector:@selector(audioStreamer:didFailWithError:)]) {
-            [delegate audioStreamer:self didFailWithError:DWAudioStreamerErrorFailedToReachHost];
+            [delegate audioStreamer:self didFailWithError:errorForAudioErrorCode(DWAudioStreamerErrorFailedToReachHost)];
             return;
         }
     }
@@ -134,7 +133,7 @@ static void streamEventCallback(CFWriteStreamRef stream, CFStreamEventType type,
     CFStreamClientContext context;
     context.version = 0;
     context.copyDescription = nil;
-    context.info = self;
+    context.info = (__bridge void *)(self);
     context.retain = nil;
     context.release = nil;
     
