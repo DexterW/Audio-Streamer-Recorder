@@ -59,7 +59,7 @@ typedef struct {
 }
 
 @property (nonatomic, getter = isRecording, readonly) BOOL recording;
-@property (nonatomic, retain) NSURL *fileURL;
+@property (nonatomic, strong) NSURL *fileURL;
 @property (nonatomic, assign) id <DWAudioReaderDelegate> delegate;
 
 -(void)record;

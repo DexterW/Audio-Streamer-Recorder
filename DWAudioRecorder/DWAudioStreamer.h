@@ -44,9 +44,9 @@ typedef enum {
     CFWriteStreamRef _outputStream;
 }
 
-@property (nonatomic, retain) NSURL *url;
+@property (nonatomic, strong) NSURL *url;
 @property (nonatomic) SInt32 portNumber;
-@property (nonatomic, retain) NSData *headerData;
+@property (nonatomic, strong) NSData *headerData;
 @property (assign) id <DWAudioStreamerDelegate> delegate;
 
 -(void)prepareForSending;
