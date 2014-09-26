@@ -54,6 +54,11 @@ typedef struct {
     void *mDelegateRef;
 } DWAudioRecorderState;
 
+typedef enum {
+    DWAudioReaderCodeciLBC, // Default
+    DWAudioReaderCodecMP4
+} DWAudioReaderCodec;
+
 @interface DWAudioReader : NSObject {
     DWAudioRecorderState recorderState;
 }
@@ -61,6 +66,7 @@ typedef struct {
 @property (nonatomic, getter = isRecording, readonly) BOOL recording;
 @property (nonatomic, strong) NSURL *fileURL;
 @property (nonatomic, assign) id <DWAudioReaderDelegate> delegate;
+@property (nonatomic) DWAudioReaderCodec codec;
 
 -(void)record;
 -(void)stop;

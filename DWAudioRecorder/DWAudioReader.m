@@ -18,7 +18,7 @@ NSString * const kFailedToEnqueueAudioBufferDescription = @"Audio reader failed 
 
 NSString * const kFailedToCreateAudioFileDescription = @"Audio reader failed to create the audio file at the designated URL.";
 
-NSString * const kFailedToOpenAudioReaderQueueDescription = @"Audio reader failed to open the audio cDWture queue.";
+NSString * const kFailedToOpenAudioReaderQueueDescription = @"Audio reader failed to open the audio queue.";
 
 NSString * const kFailedToGetAudioLevelDescription = @"Audio reader failed to get audio levels.";
 
@@ -106,14 +106,7 @@ static void HandleInputBuffer (void *aqData, AudioQueueRef inAQ, AudioQueueBuffe
     if (self) {
         memset(&recorderState.mDataFormat, 0, sizeof(recorderState.mDataFormat));
         
-        recorderState.mDataFormat.mFormatID = kAudioFormatiLBC;
-        recorderState.mDataFormat.mSampleRate = 8000.0;
-        recorderState.mDataFormat.mChannelsPerFrame = 1;
-        recorderState.mDataFormat.mBitsPerChannel = 0;
-        recorderState.mDataFormat.mBytesPerPacket = 38;
-        recorderState.mDataFormat.mBytesPerFrame = 0;
-        recorderState.mDataFormat.mFramesPerPacket = 160;
-        recorderState.mDataFormat.mFormatFlags = 0;
+        recorderState.mDataFormat = [self _basicDescriptionForCodec:DWAudioReaderCodeciLBC];
         
         recorderState.mAudioFileIsSet = false;
         
@@ -123,7 +116,7 @@ static void HandleInputBuffer (void *aqData, AudioQueueRef inAQ, AudioQueueBuffe
         AudioQueueSetProperty(recorderState.mQueue, kAudioQueueProperty_EnableLevelMetering, &metering, sizeof(metering));
         
         if (status != noErr) {
-            if ([[self delegate] respondsToSelector:@selector(audioReaderDidFailWithError:)]) {
+            if ([[self delegate] respondsToSelector:@selector(audioReader:didFailWithError:)]) {
                 [[self delegate] audioReader:self didFailWithError:errorForAudioErrorCode(DWAudioReaderErrorFailedToEnableLevelMetering)];
             }
             return nil;
@@ -137,14 +130,14 @@ static void HandleInputBuffer (void *aqData, AudioQueueRef inAQ, AudioQueueBuffe
         for (int i = 0; i < kNumberOfBuffers; ++i) {
             status = AudioQueueAllocateBuffer(recorderState.mQueue, recorderState.bufferByteSize, &recorderState.mBuffers[i]);
             if (status != noErr) {
-                if ([[self delegate] respondsToSelector:@selector(audioReaderDidFailWithError:)]) {
+                if ([[self delegate] respondsToSelector:@selector(audioReader:didFailWithError:)]) {
                     [[self delegate] audioReader:self didFailWithError:errorForAudioErrorCode(DWAudioReaderErrorFailedToAllocateAudioBuffer)];
                 }
                 return nil;
             }            
             status = AudioQueueEnqueueBuffer(recorderState.mQueue, recorderState.mBuffers[i], 0, NULL);
             if (status != noErr) {
-                if ([[self delegate] respondsToSelector:@selector(audioReaderDidFailWithError:)]) {
+                if ([[self delegate] respondsToSelector:@selector(audioReader:didFailWithError:)]) {
                     [[self delegate] audioReader:self didFailWithError:errorForAudioErrorCode(DWAudioReaderErrorFailedToEnqueueAudioBuffer)];
                 }
                 return nil;
@@ -153,6 +146,17 @@ static void HandleInputBuffer (void *aqData, AudioQueueRef inAQ, AudioQueueBuffe
     }
     
     return self;
+}
+
+-(void)setCodec:(DWAudioReaderCodec)codec {
+    NSAssert(!recorderState.mIsRunning, @"You cannot set the codec while recording");
+    
+    [self willChangeValueForKey:@"codec"];
+    _codec = codec;
+    [self didChangeValueForKey:@"codec"];
+    
+    AudioStreamBasicDescription description = [self _basicDescriptionForCodec:codec];
+    recorderState.mDataFormat = description;
 }
 
 -(void)setDelegate:(id<DWAudioReaderDelegate>)delegateRef {
@@ -164,7 +168,7 @@ static void HandleInputBuffer (void *aqData, AudioQueueRef inAQ, AudioQueueBuffe
     AudioFileTypeID fileType = kAudioFileCAFType;
     OSStatus status = AudioFileCreateWithURL((__bridge CFURLRef)url, fileType, &recorderState.mDataFormat, kAudioFileFlags_EraseFile, &recorderState.mAudioFile);
     if (status != noErr) {
-        if ([[self delegate] respondsToSelector:@selector(audioReaderDidFailWithError:)]) {
+        if ([[self delegate] respondsToSelector:@selector(audioReader:didFailWithError:)]) {
             [[self delegate] audioReader:self didFailWithError:errorForAudioErrorCode(DWAudioReaderErrorFailedToCreateAudioFile)];
         }
         return;
@@ -177,13 +181,13 @@ static void HandleInputBuffer (void *aqData, AudioQueueRef inAQ, AudioQueueBuffe
     recorderState.mIsRunning = true;
     OSStatus status = AudioQueueStart(recorderState.mQueue, NULL);
     if (status != noErr) {
-        if ([[self delegate] respondsToSelector:@selector(audioReaderDidFailWithError:)]) {
+        if ([[self delegate] respondsToSelector:@selector(audioReader:didFailWithError:)]) {
             [[self delegate] audioReader:self didFailWithError:errorForAudioErrorCode(DWAudioReaderErrorFailedToOpenAudioReaderQueue)];
         }
         return;
     }
     else {
-        if ([[self delegate] respondsToSelector:@selector(voiceStreamerDidBeginReading:)]) {
+        if ([[self delegate] respondsToSelector:@selector(audioReaderDidBeginReading:)]) {
             [[self delegate] audioReaderDidBeginReading:self];
         }
     }
@@ -198,7 +202,7 @@ static void HandleInputBuffer (void *aqData, AudioQueueRef inAQ, AudioQueueBuffe
     UInt32 dataSize = sizeof(AudioQueueLevelMeterState);
     OSStatus status = AudioQueueGetProperty(recorderState.mQueue, kAudioQueueProperty_CurrentLevelMeter, levels, &dataSize);
     if (status != noErr) {
-        if ([[self delegate] respondsToSelector:@selector(audioReaderDidFailWithError:)]) {
+        if ([[self delegate] respondsToSelector:@selector(audioReader:didFailWithError:)]) {
             [[self delegate] audioReader:self didFailWithError:errorForAudioErrorCode(DWAudioReaderErrorFailedToGetAudioLevel)];
         }
     }
@@ -211,6 +215,54 @@ static void HandleInputBuffer (void *aqData, AudioQueueRef inAQ, AudioQueueBuffe
     if ([[self delegate] respondsToSelector:@selector(audioReaderDidStopReading:)]) {
         [[self delegate] audioReaderDidStopReading:self];
     }
+}
+
+#pragma mark - Helpers
+
+-(AudioStreamBasicDescription)_basicDescriptionForCodec:(DWAudioReaderCodec)codec {
+    AudioStreamBasicDescription result;
+    
+    switch (codec) {
+        case DWAudioReaderCodecMP4:
+            result = [self _mP4Description];
+            break;
+        default:
+            result = [self _iLBCDescription];
+            break;
+    }
+    return result;
+}
+
+-(AudioStreamBasicDescription)_iLBCDescription {
+    AudioStreamBasicDescription description;
+    memset(&description, 0, sizeof(description));
+    
+    description.mFormatID = kAudioFormatiLBC;
+    description.mSampleRate = 8000.0;
+    description.mChannelsPerFrame = 1;
+    description.mBitsPerChannel = 0;
+    description.mBytesPerPacket = 38;
+    description.mBytesPerFrame = 0;
+    description.mFramesPerPacket = 160;
+    description.mFormatFlags = 0;
+    
+    return description;
+}
+
+-(AudioStreamBasicDescription)_mP4Description {
+    AudioStreamBasicDescription description;
+    memset(&description, 0, sizeof(description));
+    
+    description.mFormatID = kAudioFormatAppleIMA4;
+    description.mSampleRate = 44100.0;
+    description.mChannelsPerFrame = 2;
+    description.mBitsPerChannel = 0;
+    description.mBytesPerPacket = 68;
+    description.mBytesPerFrame = 0;
+    description.mFramesPerPacket = 64;
+    description.mFormatFlags = 0;
+    
+    return description;
 }
 
 @end

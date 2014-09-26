@@ -63,6 +63,8 @@
  */
 @property (nonatomic, strong) NSURL *remoteDestinationURL;
 
+@property (nonatomic) DWAudioReaderCodec audioCodec;
+
 /*
  The remote destination port should be specified along with the remote destination url.
 

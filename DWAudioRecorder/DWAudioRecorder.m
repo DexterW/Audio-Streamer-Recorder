@@ -27,6 +27,16 @@
     [self setHeaderData:nil];
 }
 
+-(void)setAudioCodec:(DWAudioReaderCodec)audioCodec {
+    if ([self isRecording]) {
+        [[NSException exceptionWithName:NSInternalInconsistencyException reason:NSLocalizedString(@"You cannot change the codec while recording", nil) userInfo:nil] raise];
+    }
+    [self willChangeValueForKey:@"audioCodec"];
+    _audioCodec = audioCodec;
+    [self didChangeValueForKey:@"audioCodec"];
+    [_voiceReader setCodec:audioCodec];
+}
+
 -(void)setLocalDestinationURL:(NSURL *)url {
     if ([self isRecording]) {
         [[NSException exceptionWithName:NSGenericException reason:@"Cannot change the local destination URL while recording audio" userInfo:nil] raise];
@@ -52,7 +62,7 @@
     }
     [self willChangeValueForKey:@"remoteDestinationPort"];
     _remoteDestinationPort = port;
-    [_voiceStreamer setPortNumber:port];
+    [_voiceStreamer setPortNumber:(SInt32)port];
     [self didChangeValueForKey:@"remoteDestinationPort"];
 }
 

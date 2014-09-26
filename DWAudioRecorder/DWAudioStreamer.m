@@ -89,7 +89,9 @@ static void streamEventCallback(CFWriteStreamRef stream, CFStreamEventType type,
 
 -(void)dealloc {
     [self setHeaderData:nil];
-    CFRelease(_outputStream);
+    if (_outputStream) {
+        CFRelease(_outputStream);
+    }
 }
 
 
